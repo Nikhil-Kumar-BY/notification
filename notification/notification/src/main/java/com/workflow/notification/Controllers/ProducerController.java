@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 
 
     @RestController
-    public class ChatController {
+    public class ProducerController {
 
         @Autowired
         private KafkaTemplate<String, Message> kafkaTemplate;
@@ -23,8 +23,8 @@ import java.util.concurrent.ExecutionException;
             message.setTimestamp(LocalDateTime.now().toString());
             try {
                 //Sending the message to kafka topic queue
+               kafkaTemplate.send("ride",Integer.toString(message.getUserid()), message).get();
 
-                kafkaTemplate.send("ride",Integer.toString(message.getUserid()), message).get();
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);
             }

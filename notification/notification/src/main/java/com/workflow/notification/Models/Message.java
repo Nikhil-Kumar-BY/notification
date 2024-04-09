@@ -4,7 +4,10 @@ public class Message {
     private int userid;
     private String sender;
 
+    public String starttime;
+    public String endtime;
     private String content;
+    private String status;
     private String timestamp;
 
     public Message() {
@@ -48,13 +51,39 @@ public class Message {
         this.userid = userid;
     }
 
+    public String getStarttime() {
+        return starttime;
+    }
+
+    public void setStarttime(String starttime) {
+        this.starttime = starttime;
+    }
+
+    public String getEndtime() {
+        return endtime;
+    }
+
+    public void setEndtime(String endtime) {
+        this.endtime = endtime;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Message{" +
-                ", userid='" + userid + '\'' +
-                "sender='" + sender + '\'' +
+                "userid=" + userid +
+                ", sender='" + sender + '\'' +
+                ", starttime='" + starttime + '\'' +
+                ", endtime='" + endtime + '\'' +
                 ", content='" + content + '\'' +
-
+                ", status='" + status + '\'' +
                 ", timestamp='" + timestamp + '\'' +
                 '}';
     }
