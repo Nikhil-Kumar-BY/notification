@@ -1,9 +1,7 @@
 // NotificationList.jsx
 import React from 'react';
-import { List, ListItem, Divider, Typography, ListItemText, ListItemIcon, Box, Grid } from '@mui/material';
-import { Zoom } from '@mui/material';
-import { StyledListItem, NotificationText, NotificationSecondaryText } from './styledComponents';
-import { Notifications } from '@mui/icons-material';
+import { List, Divider, ListItem,ListItemText } from '@mui/material';
+import NotificationItem from './NotificationItem';
 
 const NotificationList = ({ currentNotifications, handleNotificationClick }) => {
     return (
@@ -13,24 +11,7 @@ const NotificationList = ({ currentNotifications, handleNotificationClick }) => 
             </ListItem>
             <Divider />
             {currentNotifications.map((notification, index) => (
-                <Zoom in={true} style={{ transitionDelay: `${index * 100}ms` }} key={notification.userid}>
-                    <StyledListItem button onClick={() => handleNotificationClick(notification.userid)} selected={!notification.read}>
-                        <ListItemIcon>
-                            <Notifications color={notification.read ? "disabled" : "secondary"} />
-                        </ListItemIcon>
-                        <Box>
-                            <NotificationText variant="subtitle1">{notification.sender}</NotificationText>
-                            <NotificationSecondaryText variant="body2">
-                                <Grid container alignItems="center" spacing={1}>
-                                    <Grid item>
-                                        Shift Timing: {`${notification.starttime} - ${notification.endtime}`}
-                                    </Grid>
-                                </Grid>
-                                Assigned task: {notification.content}
-                            </NotificationSecondaryText>
-                        </Box>
-                    </StyledListItem>
-                </Zoom>
+                <NotificationItem key={notification.userid} notification={notification} handleNotificationClick={handleNotificationClick} />
             ))}
         </List>
     );

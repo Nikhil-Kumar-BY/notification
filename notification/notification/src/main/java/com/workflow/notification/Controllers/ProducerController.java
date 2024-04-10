@@ -23,7 +23,7 @@ import java.util.concurrent.ExecutionException;
             message.setTimestamp(LocalDateTime.now().toString());
             try {
                 //Sending the message to kafka topic queue
-               kafkaTemplate.send("ride",Integer.toString(message.getUserid()), message).get();
+               kafkaTemplate.send("workforce",Integer.toString(message.getUserid()), message).get();
 
             } catch (InterruptedException | ExecutionException e) {
                 throw new RuntimeException(e);

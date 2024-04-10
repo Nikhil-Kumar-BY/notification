@@ -1,5 +1,5 @@
 // Login.js
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Avatar, Button, CssBaseline, TextField, Grid, Typography, Container, Box } from '@mui/material';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
@@ -72,13 +72,21 @@ const Login = () => {
   const [message,setMessage] = useState("");
   //console.log(UserData);
   const handleChange = (e) => {
-    console.log("called")
+   
     const { name, value } = e.target;
     setUserData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
   };
+  
+  useEffect(() => {
+    // Check if user is already logged in
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/"); // Redirect to home page if logged in
+    }
+  }, [navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

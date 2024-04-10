@@ -43,9 +43,9 @@ const Homepage = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const notificationsPerPage = 5; // Limit notifications per page
     const [notifications, setNotifications] = useState([
-        { userid: 1, sender: "John Doe", content: "Complete report", starttime: "9:00 AM", endtime: "5:00 PM", status: "shift assigned", read: false },
-        { userid: 2, sender: "Alice Smith", content: "Attend meeting", starttime: "10:30 AM", endtime: "2:30 PM", status: "shift rejected", read: false },
-        { userid: 3, sender: "Bob Johnson", content: "Review code", starttime: "1:00 PM", endtime: "6:00 PM", status: "shift approved", read: false }
+        // { userid: 1, sender: "John Doe", content: "Complete report", starttime: "9:00 AM", endtime: "5:00 PM", status: "shift assigned", read: false },
+        // { userid: 2, sender: "Alice Smith", content: "Attend meeting", starttime: "10:30 AM", endtime: "2:30 PM", status: "shift rejected", read: false },
+        // { userid: 3, sender: "Bob Johnson", content: "Review code", starttime: "1:00 PM", endtime: "6:00 PM", status: "shift approved", read: false }
     ]);
     const paginate = (pageNumber) => setCurrentPage(pageNumber);
     useEffect(() => {
@@ -163,13 +163,14 @@ const Homepage = () => {
                 <Grid item>
                     <Paper style={{ margin: '20px', padding: '20px', background: currentTheme === 'light' ? '#fff' : '#333', borderRadius: 8 }}>
                         <Typography variant="body1" style={{ color: currentTheme === 'light' ? '#333' : '#eee' }}>
-                            Welcome to the Homepage! Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis odio eu urna vestibulum dignissim.
+                            
+                            Welcome {localStorage.getItem("username") +"( "+"userRole"+" )"} to the Notification service
                         </Typography>
                     </Paper>
                 </Grid>
                 <Grid item>
                     <Button variant="contained" color="primary" onClick={handleTestNotification}>
-                        Test New Notification
+                       
                     </Button>
                 </Grid>
             </Grid>

@@ -24,7 +24,7 @@ public class KafkaConsumer {
         this.offlineMessages = new ConcurrentHashMap<>();
     }
 
-    @KafkaListener(topics = "ride", groupId = "group-id")
+    @KafkaListener(topics = "workforce", groupId = "group-id")
     public void listen(String message) {
         String[] arr = message.split(":");
         String[] ID = arr[1].split(",");
@@ -44,13 +44,7 @@ public class KafkaConsumer {
     }
 
     public Flux<String> consume(String subscriberId) {
-//        System.out.println("inside");
-//        Sinks.Many<String> sink = Sinks.many().unicast().onBackpressureBuffer();
-//        sinkMap.put(subscriberId, sink);
-//        // Check for offline messages and deliver if exists
-//        deliverOfflineMessages(subscriberId, sink);
-//        sinkMap.put(subscriberId, sink);
-//        return sink.asFlux();
+
         Sinks.Many<String> sink = sinkMap.computeIfAbsent(subscriberId, k -> Sinks.many().unicast().onBackpressureBuffer());
 
         // Check for offline messages and deliver if exists

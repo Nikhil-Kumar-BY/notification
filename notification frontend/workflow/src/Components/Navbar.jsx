@@ -15,8 +15,28 @@ const Navbar = ({ toggleDrawer, toggleTheme, unreadNotificationCount, currentThe
                 <Typography variant="h6" component="div" style={{ flexGrow: 1, textAlign: 'center' }} onClick={()=> navigate('/')}>
                     Workflow
                 </Typography>
-                <Typography variant="h6" component="div" style={{ flexGrow: 1, textAlign: 'right'}} onClick={()=>navigate('/signin')}>
-                    Login
+                <Typography variant="h6" component="div" style={{ flexGrow: 1, textAlign: 'right'}} onClick={
+                    
+                    ()=>{
+                        console.log("clicked")
+                        console.log(localStorage.getItem("token"))
+                        if(localStorage.getItem("token")===null){
+                           // console.log("inside")
+                        navigate('/signin')
+                        }
+                      else{
+                        console.log("elseee")
+                        const data=fetch("http://localhost:8081/api/unsub/"+localStorage.getItem("userid"))
+                        localStorage.clear()
+                      //  const data=fetch("http://localhost:8081/api/unsub/"+localStorage.getItem("userid"))
+                        //console.log(data)
+                        navigate("/signin")
+                        }
+                    }}>
+                    {
+                   localStorage.getItem("token")===null ?"LOGIN" :"Logout"
+                        
+                    }
                 </Typography>
                 
                 <IconButton color="inherit" onClick={toggleDrawer}>

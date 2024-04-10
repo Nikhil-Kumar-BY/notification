@@ -1,7 +1,8 @@
+// DrawerComponent.jsx
 import React from 'react';
 import { Drawer, List, ListItem, ListItemText, Divider, IconButton, Typography } from '@mui/material';
-import  Pagination  from '../PaginationComponent';
-import NotificationItem from '../NotificationList';
+import Pagination from './PaginationComponent';
+import NotificationList from './NotificationList';
 
 const DrawerComponent = ({ isDrawerOpen, setIsDrawerOpen, handleMarkAllAsRead, handleNotificationScroll, notifications, currentPage, paginate, notificationsPerPage }) => {
     return (
@@ -15,9 +16,7 @@ const DrawerComponent = ({ isDrawerOpen, setIsDrawerOpen, handleMarkAllAsRead, h
                         </IconButton>
                     </ListItem>
                     <Divider />
-                    {notifications.map((notification, index) => (
-                        <NotificationItem key={notification.id} notification={notification} />
-                    ))}
+                    <NotificationList currentNotifications={notifications} handleNotificationClick={() => {}} />
                 </List>
             </div>
             <Pagination
